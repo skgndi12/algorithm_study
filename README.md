@@ -22,4 +22,8 @@
 
 ## 17~19: 개인 프로젝트
 
+# Convention
 
+## Branch
+
+- 이름 형식: {날짜}/{sw or wh}
