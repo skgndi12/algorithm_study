@@ -1,33 +1,28 @@
 import sys
 from typing import Dict
 input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
 
 
 class Tree:
-    def __init__(self, edges: Dict[int, int], node_num: int):
-        self.node_num = node_num
+    def __init__(self, edges: Dict[int, int]):
         self.edges = edges
         self.tree = set()
         self.visited = set()
 
     def execute(self):
-        print(self.edges)
-        # queue 로 풀기
-        self.visited.add(1)
-        for i in range(2, node_num + 1):
-            for j in self.edges[i]:
-                if j not in self.visited:
-                    print(j)
-                    self.visited.add(j)
-            self.visited.add(i)
+        self.dfs(1, edges)
 
-    # def dfs(self, cur: int, edges: Dict[int, int]):
-    #     self.visited.add(cur)
+        for _, p in sorted(self.tree, key=lambda x: x[0]):
+            print(p)
 
-    #     for c in edges[cur]:
-    #         if c not in self.visited:
-    #             self.tree.add((c, cur))
-    #             self.dfs(c, edges)
+    def dfs(self, cur: int, edges: Dict[int, int]):
+        self.visited.add(cur)
+
+        for c in edges[cur]:
+            if c not in self.visited:
+                self.tree.add((c, cur))
+                self.dfs(c, edges)
 
 
 if __name__ == "__main__":
@@ -46,5 +41,5 @@ if __name__ == "__main__":
         else:
             edges[node2] = [node1]
 
-    tree = Tree(edges, node_num)
+    tree = Tree(edges)
     tree.execute()

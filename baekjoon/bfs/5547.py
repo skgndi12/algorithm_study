@@ -4,6 +4,7 @@ input = sys.stdin.readline
 
 
 def solution(board: List[List[int]]):
+    # TODO: 한 겹의 레이어를 더 만들어서 외부 영역을 구분!
     visited = [[False] * len(board[0]) for _ in range(len(board))]
     pass
 
